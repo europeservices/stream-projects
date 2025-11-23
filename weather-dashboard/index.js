@@ -103,4 +103,8 @@ async function retrieveWeatherData(lat, lon) {
     return {status: "error"};
 }
 
+window.onload = function () {
+
+}
+
 window.onSubmit = onSubmit;
