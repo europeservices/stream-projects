@@ -10,9 +10,9 @@
 </head>
 <body>
     <h1>Weather Lookup</h1>
-    <form onsubmit="onSubmit()">
-        <label for="city-name">Stadt:</label>
-        <input id="city-name" type="text">
+    <form class="cityInputForm" onsubmit="onSubmit()" method="POST">
+        <label for="cityName">Stadt:</label>
+        <input id="cityName" type="text">
         <button id="submit" type="submit">Wetter herausfinden</button>
     </form>
     <div id="results"></div>
