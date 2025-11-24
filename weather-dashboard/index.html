@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,16 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>Weather Lookup</h1>
-    <form class="cityInputForm" onsubmit="onSubmit()" method="POST">
-        <label for="cityName">Stadt:</label>
-        <input id="cityName" type="text">
-        <button id="submit" type="submit">Wetter herausfinden</button>
-    </form>
-    <div id="results"></div>
+<h1>Weather Lookup</h1>
+<form class="cityInputForm" onsubmit="onSubmit()" method="POST">
+    <label for="cityName">Stadt:</label>
+    <input id="cityName" type="text">
+    <button type="submit" class="submitButton">
+        <i class="fas fa-magnifying-glass"></i>
+    </button>
+</form>
+<div class="loading-spinner" id="loadingSpinner" style="display: none"></div>
+<div id="results">
+</div>
 
-    <script type="module" src="index.js"></script>
+<script type="module" src="index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>

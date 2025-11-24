@@ -48,20 +48,33 @@ function clearResults() {
 }
 
 /**
+ * Toggle loading spinner visibility
+ * @param show {boolean}
+ */
+function toggleLoadingSpinner(show) {
+    const spinner = document.getElementById("loadingSpinner");
+    console.log(show);
+    if (show) {
+        spinner.style.display = "block";
+    } else {
+        spinner.style.display = "none";
+    }
+}
+
+/**
  * Handle form submission
- * @param event
  * @returns {Promise<void>}
  */
-async function onSubmit(event) {
+async function onSubmit() {
     event.preventDefault();
+    clearResults();
+    toggleLoadingSpinner(true);
     const cityname = document.getElementById("cityName").value;
     const coordinates = await retrieveCoordinates(cityname);
     if (coordinates.status === "success") {
         const weatherData = await retrieveWeatherData(coordinates.lat, coordinates.lon);
         const windSpeedKmH = weatherData.windSpeed * 1.852;
         const tempC = weatherData.temperature.toString().split(".")[0];
-
-        clearResults();
 
         const heading = document.createElement("h2");
         heading.textContent = `Ergebnisse für ${cityname}`;
@@ -82,11 +95,13 @@ async function onSubmit(event) {
         condition.innerHTML = `<strong>Wetterlage</strong>: ${weatherTypes[getWeatherCondition(weatherData.condition, weatherData.cloudCoverage)]}`;
 
         appendToResults([heading, temperature, humidity, feelLikeTemp, wind, condition]);
+        toggleLoadingSpinner(false);
     } else {
         clearResults();
         const errorMessage = document.createElement("p");
         errorMessage.textContent = "Fehler bei der Ermittlung des Wetters für die angegebene Stadt.";
         appendToResults([errorMessage]);
+        toggleLoadingSpinner(false);
     }
 }
 
